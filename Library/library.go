@@ -25,7 +25,7 @@ func NewLibrary() *Library {
 func (L *Library) NewMember(user User) {
 	L.members[user] = struct{}{}
 
-	////adding member to the database
+	//adding member to the database
 	err := L.MemberDB(user)
 	if err != nil {
 		fmt.Errorf("member not added to Database")
@@ -40,7 +40,7 @@ func (L *Library) NewBook(book Book) error {
 	}
 	L.BookDetails[book.name()] = book
 
-	////adding book to the database
+	//adding book to the database
 	err := L.BookDb(book)
 	if err != nil {
 		fmt.Errorf("book not added to Database")
