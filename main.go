@@ -2,7 +2,6 @@ package main
 
 import (
 	"Library_Managment_System/Library"
-	"Library_Managment_System/badgerdb"
 	"bufio"
 	"fmt"
 	"log"
@@ -191,31 +190,6 @@ func main() {
 		case 5:
 			handleRequests()
 			//exit clause to close application
-
-		case 6:
-			bookname := "qwerty"
-			key := []byte(bookname)
-			var object Library.Book
-
-			db, err := badgerdb.Open()
-			if err != nil {
-				fmt.Errorf("error Opening the Database")
-			}
-
-			//if key not found in the database then returning the error
-			value, err := db.GetEntry(key)
-			if err != nil {
-				fmt.Errorf("error in finding key in the Db")
-
-			}
-			fmt.Println(value)
-			book, err := Library.GobDecode(value, object)
-			if err != nil {
-				fmt.Errorf("book can't be Deserialized")
-
-			}
-			fmt.Println("book", book)
-			db.Close()
 
 		default:
 			flag = false
