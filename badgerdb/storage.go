@@ -35,6 +35,7 @@ func (Db *database) Close() {
 func (Db *database) GetEntry(key []byte) (value []byte, err error) {
 	//Define a view method on the database
 	err = Db.Client.View(func(view *badger.Txn) error {
+
 		//Attempt to get the Item for the given key
 		item, err := view.Get(key)
 		if err != nil {
@@ -58,6 +59,7 @@ func (Db *database) GetEntry(key []byte) (value []byte, err error) {
 func (Db *database) SetEntry(key, value []byte) error {
 	//Define an Update transaction the database
 	return Db.Client.Update(func(view *badger.Txn) error {
+
 		//Attempt to set the key-value pair to the database
 		if err := view.Set(key, value); err != nil {
 			return fmt.Errorf("db set for Key '%x' failed: %w", key, err)

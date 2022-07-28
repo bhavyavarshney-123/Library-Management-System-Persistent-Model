@@ -67,7 +67,7 @@ func main() {
 			scanner.Scan()
 			author := scanner.Text()
 
-			//Enter booktype
+			//Enter BookType
 			fmt.Println("Enter Book Type:")
 			var kind Library.BookType
 			if _, err := fmt.Scanln(&kind); err != nil {

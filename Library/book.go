@@ -73,10 +73,11 @@ func (D *DigitalBook) kind() BookType {
 	return D.Kind
 }
 func (D *DigitalBook) Borrow(user User) error {
-	///if no copies available to issue
+	//if no copies available to issue
 	if len(D.Borrower) >= D.Copies {
 		return fmt.Errorf("issue Limit Exceeded")
 	}
+
 	//if copies available to issue
 	D.Borrower = append(D.Borrower, user)
 
@@ -92,12 +93,13 @@ func (D *DigitalBook) Return(user User) error {
 			return nil
 		}
 	}
-	////if user not found in the borrower
+
+	//if user not found in the borrower
 	return fmt.Errorf("user not have this book")
 
 }
 
-// NewDigitalBook Constructor to add new digital Book
+//NewDigitalBook Constructor to add new digital Book
 func NewDigitalBook(name, author string, kind BookType, copies int) (*DigitalBook, error) {
 	switch kind {
 	//only particular kinds of Book can be added
@@ -105,6 +107,7 @@ func NewDigitalBook(name, author string, kind BookType, copies int) (*DigitalBoo
 	default:
 		return nil, fmt.Errorf("invalid Booktype")
 	}
+
 	//Only 200 copies of any Digital Book can be added
 	if copies > 200 {
 		return nil, fmt.Errorf("can't Store more than 200 Book copies")
@@ -153,7 +156,7 @@ func (P *PhysicalBook) Return(user User) error {
 	return nil
 }
 
-// NewPhysicalBook Constructor to add new physical Book
+//NewPhysicalBook Constructor to add new physical Book
 func NewPhysicalBook(name, author string, kind BookType) (*PhysicalBook, error) {
 	switch kind {
 	//only particular kinds of Book can be added

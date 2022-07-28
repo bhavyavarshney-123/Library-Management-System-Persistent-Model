@@ -53,6 +53,7 @@ func (L *Library) NewBook(book Book) error {
 func (L *Library) CheckMember(user User) bool {
 	//Check member in the cache memory
 	_, exists := L.members[user]
+
 	//if present then return true
 	if exists == true {
 		return exists
@@ -87,7 +88,6 @@ func (L *Library) Checkbook(BookName string) (Book, bool) {
 
 // MemberDB to store the member in the database
 func (*Library) MemberDB(user User) error {
-
 	//Opening the Badger database
 	db, err := badgerdb.Open()
 	if err != nil {
@@ -185,7 +185,6 @@ func (*Library) GetBookDb(key []byte) (Book, bool) {
 		return nil, false
 	}
 
-	fmt.Println(book)
 	//close the db
 	defer db.Close()
 	return book, true
